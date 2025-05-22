@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Product - Order Now</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="product-container">
+            <div class="product-image">
+                <img src="lamp.jpg" alt="Product Image" id="product-img">
+            </div>
+            <div class="product-details">
+                <h1 id="product-title">Ocean wave projector light lamp </h1>
+                <p class="price">₹299</p>
+                <p class="description">Ocean Wave Projector Light, Romantic LED Night Light with 3D Water Wave Effect, Warm Ambiance Projection Lamp, Crystal Table Lamp for Bedroom Decor
+Name: Ocean Wave Projector Light, Romantic LED Night Light with 3D Water Wave Effect, Warm Ambiance Projection Lamp, Crystal Table Lamp for Bedroom Decor
+Material: Plastic
+Is Assembly Required: No
+Type of Bulb: Electric
+Power Source: Corded Electric
+Product Breadth: 5 cm
+Product Height: 15 cm
+Product Length: 15 cm
+Net Quantity (N): 1
+</p>
+                
+                <form id="order-form" class="order-form">
+                    <div class="form-group">
+                        <label for="quantity">Quantity:</label>
+                        <select id="quantity" name="quantity" required>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="name">Full Name:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number:</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone2">Alternate Phone (Optional):</label>
+                        <input type="tel" id="phone2" name="phone2">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="address">Shipping Address:</label>
+                        <textarea id="address" name="address" rows="3" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="address2">Alternate Address (Optional):</label>
+                        <textarea id="address2" name="address2" rows="2"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Payment Method:</label>
+                        <div class="payment-options">
+                            <label>
+                                <input type="radio" name="payment" value="cod" checked>
+                                <span>Cash on Delivery</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="payment" value="online">
+                                <span>Online Payment</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="order-btn">Place Order</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="alert" class="alert hidden">
+        <span id="alert-message"></span>
+        <button class="close-alert">&times;</button>
+    </div>
+
+ 
+<!-- Load Firebase first -->
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+
+<!-- Then your firebase config -->
+<script>
+  // Initialize Firebase
+  const firebaseConfig = {
+    apiKey: "AIzaSyDvxTwbGbCFjoShFnzCV9DRO67GYyFdepI",
+    authDomain: "portfolio-706.firebaseapp.com",
+    databaseURL: "https://portfolio-706-default-rtdb.firebaseio.com",
+    projectId: "portfolio-706",
+    storageBucket: "portfolio-706.appspot.com",
+    messagingSenderId: "325002548873",
+    appId: "1:325002548873:web:9350798ffd43dcd3aed858",
+    measurementId: "G-CE37HHW0YR"
+  };
+
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+  }
+  const db = firebase.database();
+  const auth = firebase.auth();
+</script>
+
+<!-- Then your main script -->
+<!-- Add this in the head section -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+  // Initialize EmailJS
+  (function() {
+    emailjs.init('yi9OTzNXCIstjGmnT');
+    console.log('EmailJS initialized');
+  })();
+</script>
+<script src="script.js"></script>
+</body>
+</html>
