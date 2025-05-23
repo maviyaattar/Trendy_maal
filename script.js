@@ -2,7 +2,7 @@
 // GLOBAL VARIABLES
 // =============================================
 const PRODUCT_PRICE = 299;
-const EMAILJS_SERVICE_ID = 'service_1dn5rzt';
+const EMAILJS_SERVICE_ID = 'service_6epqy8n';
 const THANK_YOU_TEMPLATE_ID = 'template_4ipiiao';
 const STATUS_UPDATE_TEMPLATE_ID = 'template_cawg2el';
 
