@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Snowfall Lamp - Order Now</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* Global Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      color: #212529;
+      background-color: #f8f9fa;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    
+    /* Header */
+    .main-header {
+      background-color: white;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 1rem 0;
+    }
+    
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #4361ee;
+    }
+    
+    .main-nav {
+      display: flex;
+      gap: 1.5rem;
+    }
+    
+    .nav-link {
+      color: #212529;
+      font-weight: 500;
+    }
+    
+    .nav-link:hover {
+      color: #4361ee;
+    }
+    
+    /* Product Page */
+    .product-page {
+      padding: 2rem 0;
+    }
+    
+    .product-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    
+    @media (min-width: 992px) {
+      .product-container {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    
+    .product-gallery {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .main-image {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      aspect-ratio: 1/1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: white;
+    }
+    
+    .main-image img {
+      max-width: 80%;
+      max-height: 80%;
+      object-fit: contain;
+    }
+    
+    .thumbnails {
+      display: flex;
+      gap: 0.5rem;
+    }
+    
+    .thumbnail {
+      width: 60px;
+      height: 60px;
+      border-radius: 4px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
+      object-fit: cover;
+      background-color: white;
+      padding: 0.25rem;
+    }
+    
+    .thumbnail.active {
+      border-color: #4361ee;
+    }
+    
+    .product-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .product-title {
+      font-size: 2rem;
+      color: #212529;
+    }
+    
+    .price-section {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .current-price {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #4361ee;
+    }
+    
+    .original-price {
+      font-size: 1.25rem;
+      text-decoration: line-through;
+      color: #6c757d;
+    }
+    
+    .discount {
+      background-color: #f72585;
+      color: white;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+    
+    .rating {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .stars {
+      color: #ffc107;
+    }
+    
+    .review-count {
+      font-size: 0.875rem;
+      color: #6c757d;
+    }
+    
+    .delivery-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding: 1rem;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    
+    .delivery-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .delivery-item i {
+      color: #4361ee;
+    }
+    
+    .features-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .features-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .features-list i {
+      color: #4cc9f0;
+    }
+    
+    /* Order Form */
+    .order-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    
+    @media (min-width: 768px) {
+      .form-row {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    
+    label {
+      font-weight: 500;
+      font-size: 0.875rem;
+    }
+    
+    input, textarea {
+      padding: 1rem;
+      border: 1px solid #e9ecef;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+    
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #4361ee;
+      box-shadow: 0 0 0 2px rgba(67,97,238,0.2);
+    }
+    
+    .quantity-selector {
+      display: flex;
+      align-items: center;
+      max-width: 120px;
+    }
+    
+    .quantity-btn {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #e9ecef;
+      color: #212529;
+      font-size: 1rem;
+      border-radius: 4px;
+    }
+    
+    .quantity-btn:hover {
+      background-color: #d1d7e0;
+    }
+    
+    #quantity {
+      width: 50px;
+      text-align: center;
+      padding: 0;
+      border: none;
+      background-color: transparent;
+      font-weight: 500;
+    }
+    
+    .payment-options {
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .payment-option {
+      flex: 1;
+    }
+    
+    .payment-option input {
+      display: none;
+    }
+    
+    .payment-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 1rem;
+      border: 1px solid #e9ecef;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .payment-option input:checked + .payment-content {
+      border-color: #4361ee;
+      background-color: rgba(67,97,238,0.05);
+    }
+    
+    .payment-content i {
+      font-size: 1.25rem;
+      color: #4361ee;
+    }
+    
+    .submit-btn {
+      background-color: #4361ee;
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .submit-btn:hover {
+      background-color: #3f37c9;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    
+    /* Alert */
+    .alert {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+      z-index: 1000;
+      max-width: 400px;
+      transform: translateX(150%);
+      transition: all 0.3s ease;
+    }
+    
+    .alert.show {
+      transform: translateX(0);
+    }
+    
+    .alert.success {
+      background-color: #4cc9f0;
+    }
+    
+    .alert.error {
+      background-color: #ef233c;
+    }
+    
+    .close-alert {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.25rem;
+      cursor: pointer;
+      margin-left: 1rem;
+    }
+    
+    /* Success Modal */
+    .success-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      background-color: rgba(0,0,0,0.5);
+    }
+    
+    .modal-content {
+      background-color: white;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 500px;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+      animation: fadeInUp 0.3s ease;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .checkmark {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 1rem;
+    }
+    
+    .checkmark-circle {
+      stroke: #4361ee;
+      stroke-width: 2;
+      animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+    }
+    
+    .checkmark-check {
+      stroke: #4361ee;
+      stroke-width: 2;
+      stroke-dasharray: 48;
+      stroke-dashoffset: 48;
+      animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+    }
+    
+    @keyframes stroke {
+      100% {
+        stroke-dashoffset: 0;
+      }
+    }
+    
+    .order-summary {
+      margin: 2rem 0;
+      text-align: left;
+    }
+    
+    .order-id-container {
+      display: flex;
+      margin-top: 0.5rem;
+    }
+    
+    .order-id-container input {
+      flex: 1;
+      padding: 0.5rem;
+      border: 1px solid #e9ecef;
+      border-radius: 4px 0 0 4px;
+      font-family: monospace;
+    }
+    
+    .order-id-container button {
+      padding: 0.5rem;
+      background-color: #e9ecef;
+      border: 1px solid #e9ecef;
+      border-left: none;
+      border-radius: 0 4px 4px 0;
+      cursor: pointer;
+    }
+    
+    .order-id-container button:hover {
+      background-color: #d1d7e0;
+    }
+    
+    .modal-actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    
+    .modal-actions .btn {
+      flex: 1;
+    }
+    
+    .btn-secondary {
+      background-color: #e9ecef;
+      color: #212529;
+    }
+  </style>
+</head>
+<body>
+  <header class="main-header">
+    <div class="container header-container">
+      <div class="logo">Trendy Maal</div>
+      <nav class="main-nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="track.html" class="nav-link">TrackOrder</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="product-page">
+    <div class="container">
+      <div class="product-container">
+        <div class="product-gallery">
+          <div class="main-image">
+            <img src="https://i.ibb.co/PsrRZ63B/images-2.jpg" alt="Snowfall Lamp" id="product-img">
+          </div>
+        </div>
+        
+        <div class="product-info">
+          <h1 class="product-title">Snowfall Lamp with Street Light</h1>
+          
+          <div class="product-meta">
+            <div class="rating">
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+              <span class="review-count">98 Reviews</span>
+            </div>
+          </div>
+          
+          <div class="price-section">
+            <span class="current-price">₹299</span>
+            <span class="original-price">₹599</span>
+            <span class="discount">50% OFF</span>
+          </div>
+          
+          <div class="delivery-info">
+            <div class="delivery-item">
+              <i class="fas fa-truck"></i>
+              <span>Free delivery in 3-5 business days</span>
+            </div>
+            <div class="delivery-item">
+              <i class="fas fa-check-circle"></i>
+              <span>In stock - Ready to ship</span>
+            </div>
+          </div>
+          
+          <div class="product-description">
+            <h3>Description</h3>
+            <p>Snowfall Lamp with Street Light Snow lamp– Handmade Snow Scenery Night Light for Christmas Decor, Birthday Gifts, and Family Fun</p>
+            <ul class="features-list">
+              <li><i class="fas fa-check"></i> Material: Plastic</li>
+              <li><i class="fas fa-check"></i> Self Assembly</li>
+              <li><i class="fas fa-check"></i> Bulb Included</li>
+              <li><i class="fas fa-check"></i> Waterproof Design</li>
+              <li><i class="fas fa-check"></i> Warm, soothing light</li>
+              <li><i class="fas fa-check"></i> Perfect for Christmas decor</li>
+              <li><i class="fas fa-check"></i> Great gift for family and friends</li>
+            </ul>
+            <p><strong>Product Dimensions:</strong> 15cm (Height) × 11cm (Length) × 1.5cm (Breadth)</p>
+            <p><strong>Magical Winter Wonderland:</strong> Create a serene and peaceful atmosphere with the enchanting snowflake-themed night light, perfect for bedrooms, living rooms, and study areas.</p>
+            <p><strong>Perfect Gift Choice:</strong> Share a heartfelt message with loved ones; an ideal gift for birthdays, romantic gestures, or family bonding moments.</p>
+          </div>
+          
+          <form id="order-form" class="order-form">
+            <div class="form-group">
+              <label for="quantity">Quantity:</label>
+              <div class="quantity-selector">
+                <button type="button" class="quantity-btn minus">-</button>
+                <input type="number" id="quantity" name="quantity" value="1" min="1" max="10">
+                <button type="button" class="quantity-btn plus">+</button>
+              </div>
+            </div>
+            
+            <div class="form-section">
+              <h3>Customer Information</h3>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="name">Full Name*</label>
+                  <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                  <label for="email">Email*</label>
+                  <input type="email" id="email" name="email" required>
+                </div>
+              </div>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="phone">Phone Number*</label>
+                  <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                  <label for="phone2">Alternate Phone (Optional)</label>
+                  <input type="tel" id="phone2" name="phone2">
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-section">
+              <h3>Shipping Information</h3>
+              <div class="form-group">
+                <label for="address">Shipping Address*</label>
+                <textarea id="address" name="address" rows="3" required></textarea>
+              </div>
+              <div class="form-group">
+                <label for="address2">Alternate Address (Optional)</label>
+                <textarea id="address2" name="address2" rows="2"></textarea>
+              </div>
+            </div>
+            
+            <div class="form-section">
+              <h3>Payment Method</h3>
+              <div class="payment-options">
+                <label class="payment-option">
+                  <input type="radio" name="payment" value="cod" checked>
+                  <div class="payment-content">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <span>Cash on Delivery</span>
+                  </div>
+                </label>
+                <label class="payment-option">
+                  <input type="radio" name="payment" value="online">
+                  <div class="payment-content">
+                    <i class="fas fa-credit-card"></i>
+                    <span>Online Payment</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+            
+            <button type="submit" class="submit-btn" id="submit-order">
+              <span class="btn-text">Place Order</span>
+              <span class="btn-icon"><i class="fas fa-arrow-right"></i></span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="alert" class="alert hidden"></div>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+  
+  <script>
+    // Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyDvxTwbGbCFjoShFnzCV9DRO67GYyFdepI",
+      authDomain: "portfolio-706.firebaseapp.com",
+      databaseURL: "https://portfolio-706-default-rtdb.firebaseio.com",
+      projectId: "portfolio-706",
+      storageBucket: "portfolio-706.appspot.com",
+      messagingSenderId: "325002548873",
+      appId: "1:325002548873:web:9350798ffd43dcd3aed858",
+      measurementId: "G-CE37HHW0YR"
+    };
+
+    // Initialize Firebase
+    if (!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+    }
+    const db = firebase.database();
+    
+    // Constants
+    const PRODUCT_PRICE = 299;
+    const ORDER_STATUS = {
+      PROCESSING: 'processing',
+      CONFIRMED: 'confirmed',
+      SHIPPED: 'shipped',
+      DELIVERED: 'delivered'
+    };
+    
+    // DOM Elements
+    const thumbnails = document.querySelectorAll('.thumbnail');
+    const productImg = document.getElementById('product-img');
+    const minusBtn = document.querySelector('.quantity-btn.minus');
+    const plusBtn = document.querySelector('.quantity-btn.plus');
+    const quantityInput = document.getElementById('quantity');
+    const orderForm = document.getElementById('order-form');
+    const submitBtn = document.getElementById('submit-order');
+    const alertBox = document.getElementById('alert');
+    
+    // Event Listeners
+    thumbnails.forEach(thumb => {
+      thumb.addEventListener('click', () => {
+        document.querySelector('.thumbnail.active').classList.remove('active');
+        thumb.classList.add('active');
+        productImg.src = thumb.src;
+      });
+    });
+    
+    minusBtn.addEventListener('click', () => {
+      if (quantityInput.value > 1) {
+        quantityInput.value--;
+      }
+    });
+    
+    plusBtn.addEventListener('click', () => {
+      if (quantityInput.value < 10) {
+        quantityInput.value++;
+      }
+    });
+    
+    orderForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      submitBtn.disabled = true;
+      submitBtn.querySelector('.btn-text').textContent = 'Processing...';
+      
+      try {
+        const formData = getFormData();
+        validateFormData(formData);
+        
+        // Create order in Firebase
+        const orderId = await createOrder(formData);
+        
+        // Show success message
+        showSuccessModal(orderId, formData.email);
+        orderForm.reset();
+        
+      } catch (error) {
+        console.error('Order submission error:', error);
+        showAlert(error.message, 'error');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.querySelector('.btn-text').textContent = 'Place Order';
+      }
+    });
+    
+    // Helper Functions
+    function getFormData() {
+      return {
+        product: document.querySelector('.product-title').textContent,
+        quantity: parseInt(quantityInput.value),
+        name: document.getElementById('name').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        phone: document.getElementById('phone').value.trim(),
+        phone2: document.getElementById('phone2').value.trim(),
+        address: document.getElementById('address').value.trim(),
+        address2: document.getElementById('address2').value.trim(),
+        payment: document.querySelector('input[name="payment"]:checked').value,
+        status: ORDER_STATUS.PROCESSING,
+        date: new Date().toISOString()
+      };
+    }
+    
+    function validateFormData(formData) {
+      if (!formData.name) throw new Error('Please enter your full name');
+      if (!validateEmail(formData.email)) throw new Error('Please enter a valid email address');
+      if (!validatePhone(formData.phone)) throw new Error('Please enter a valid 10-digit phone number');
+      if (!formData.address) throw new Error('Please enter your shipping address');
+    }
+    
+    function validateEmail(email) {
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return re.test(email);
+    }
+    
+    function validatePhone(phone) {
+      const re = /^\d{10}$/;
+      return re.test(phone);
+    }
+    
+    async function createOrder(orderData) {
+      try {
+        // Generate a unique order ID
+        const orderId = 'ORD-' + Date.now().toString().slice(-8);
+        
+        // Add order to Firebase
+        await db.ref('orders/' + orderId).set(orderData);
+        
+        return orderId;
+      } catch (error) {
+        console.error('Firebase error:', error);
+        throw new Error('Failed to create order. Please try again.');
+      }
+    }
+    
+    function showAlert(message, type) {
+      alertBox.textContent = message;
+      alertBox.className = `alert ${type} show`;
+      
+      // Add close button
+      const closeBtn = document.createElement('button');
+      closeBtn.className = 'close-alert';
+      closeBtn.innerHTML = '&times;';
+      closeBtn.addEventListener('click', () => {
+        alertBox.classList.remove('show');
+      });
+      alertBox.appendChild(closeBtn);
+      
+      // Auto-hide after 5 seconds
+      setTimeout(() => {
+        alertBox.classList.remove('show');
+      }, 5000);
+    }
+    
+    function showSuccessModal(orderId, email) {
+      const modal = document.createElement('div');
+      modal.className = 'success-modal';
+      modal.innerHTML = `
+        <div class="modal-content">
+          <div class="success-animation">
+            <svg class="checkmark" viewBox="0 0 52 52">
+              <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+              <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+            </svg>
+            <h2>Order Placed Successfully!</h2>
+            <p>Thank you for your purchase.</p>
+          </div>
+          
+          <div class="order-summary">
+            <div class="summary-item">
+              <span>Order ID:</span>
+              <div class="order-id-container">
+                <input type="text" value="${orderId}" readonly>
+                <button class="copy-btn"><i class="fas fa-copy"></i></button>
+              </div>
+            </div>
+            <div class="summary-item">
+              <span>Tracking Link:</span>
+              <a href="track.html?orderId=${orderId}&email=${encodeURIComponent(email)}" 
+                 class="tracking-link">
+                View Order Status
+              </a>
+            </div>
+          </div>
+          
+          <div class="modal-actions">
+            <button class="btn btn-secondary" id="continue-shopping">Continue Shopping</button>
+            <button class="btn btn-primary" id="view-order">Track Your Order</button>
+          </div>
+        </div>
+      `;
+      
+      document.body.appendChild(modal);
+      
+      // Add event listeners
+      document.querySelector('.copy-btn').addEventListener('click', () => {
+        copyToClipboard(orderId);
+        showAlert('Order ID copied!', 'success');
+      });
+      
+      document.getElementById('continue-shopping').addEventListener('click', () => {
+        document.body.removeChild(modal);
+      });
+      
+      document.getElementById('view-order').addEventListener('click', () => {
+        window.location.href = `track.html?orderId=${orderId}&email=${encodeURIComponent(email)}`;
+      });
+    }
+    
+    function copyToClipboard(text) {
+      const input = document.createElement('input');
+      input.value = text;
+      document.body.appendChild(input);
+      input.select();
+      document.execCommand('copy');
+      document.body.removeChild(input);
+    }
+  </script>
+</body>
+</html>
