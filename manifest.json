@@ -1,0 +1,15 @@
+{
+  "name": "Trendy Maal",
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
+  "short_name": "Trendymaal",
+  "id": "Trendy_maal ",
+  "description": "Trendymaal",
+  "display_override": [
+    "fullscreen",
+    "window-controls-overlay"
+  ],
+  "categories": [
+    "shopping"
+  ]
+}
